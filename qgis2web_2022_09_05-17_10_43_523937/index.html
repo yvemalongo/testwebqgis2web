@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/pointsinteret1_1.js"></script>
+        <script src="data/isoteneurco_4.js"></script>
+        <script src="data/isoteneurco2_5.js"></script>
+        <script src="data/isoteneurcuivre_6.js"></script>
+        <script src="data/grille_7.js"></script>
+        <script src="data/pointinteret_8.js"></script>
+        <script src="data/teneur_9.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[47.09756873361073,6.798971765678447],[47.16610303328948,6.924678117165379]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_openstreetmap_0');
+        map.getPane('pane_openstreetmap_0').style.zIndex = 400;
+        var layer_openstreetmap_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_openstreetmap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+        });
+        layer_openstreetmap_0;
+        map.addLayer(layer_openstreetmap_0);
+        function pop_pointsinteret1_1(feature, layer) {
+        }
+
+        function style_pointsinteret1_1_0() {
+            return {
+                pane: 'pane_pointsinteret1_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,72,75,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_pointsinteret1_1');
+        map.getPane('pane_pointsinteret1_1').style.zIndex = 401;
+        map.getPane('pane_pointsinteret1_1').style['mix-blend-mode'] = 'normal';
+        var layer_pointsinteret1_1 = new L.geoJson(json_pointsinteret1_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_pointsinteret1_1',
+            layerName: 'layer_pointsinteret1_1',
+            pane: 'pane_pointsinteret1_1',
+            onEachFeature: pop_pointsinteret1_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_pointsinteret1_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_pointsinteret1_1);
+        map.addLayer(layer_pointsinteret1_1);
+        map.createPane('pane_interpocobalt_2');
+        map.getPane('pane_interpocobalt_2').style.zIndex = 402;
+        var img_interpocobalt_2 = 'data/interpocobalt_2.png';
+        var img_bounds_interpocobalt_2 = [[47.11874572682516,6.824906593254828],[47.15998248006539,6.8866494391095445]];
+        var layer_interpocobalt_2 = new L.imageOverlay(img_interpocobalt_2,
+                                              img_bounds_interpocobalt_2,
+                                              {pane: 'pane_interpocobalt_2'});
+        bounds_group.addLayer(layer_interpocobalt_2);
+        map.addLayer(layer_interpocobalt_2);
+        map.createPane('pane_interpocuivre_3');
+        map.getPane('pane_interpocuivre_3').style.zIndex = 403;
+        var img_interpocuivre_3 = 'data/interpocuivre_3.png';
+        var img_bounds_interpocuivre_3 = [[47.118519099939746,6.824574333434366],[47.16020893062817,6.886981186530318]];
+        var layer_interpocuivre_3 = new L.imageOverlay(img_interpocuivre_3,
+                                              img_bounds_interpocuivre_3,
+                                              {pane: 'pane_interpocuivre_3'});
+        bounds_group.addLayer(layer_interpocuivre_3);
+        map.addLayer(layer_interpocuivre_3);
+        function pop_isoteneurco_4(feature, layer) {
+        }
+
+        function style_isoteneurco_4_0(feature) {
+            if (feature.properties['ELEV'] >= 6.000000 && feature.properties['ELEV'] <= 8.000000 ) {
+                return {
+                pane: 'pane_isoteneurco_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 8.000000 && feature.properties['ELEV'] <= 10.000000 ) {
+                return {
+                pane: 'pane_isoteneurco_4',
+                opacity: 1,
+                color: 'rgba(255,191,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 10.000000 && feature.properties['ELEV'] <= 12.000000 ) {
+                return {
+                pane: 'pane_isoteneurco_4',
+                opacity: 1,
+                color: 'rgba(255,128,128,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 12.000000 && feature.properties['ELEV'] <= 14.000000 ) {
+                return {
+                pane: 'pane_isoteneurco_4',
+                opacity: 1,
+                color: 'rgba(255,64,64,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 14.000000 && feature.properties['ELEV'] <= 16.000000 ) {
+                return {
+                pane: 'pane_isoteneurco_4',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_isoteneurco_4');
+        map.getPane('pane_isoteneurco_4').style.zIndex = 404;
+        map.getPane('pane_isoteneurco_4').style['mix-blend-mode'] = 'normal';
+        var layer_isoteneurco_4 = new L.geoJson(json_isoteneurco_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_isoteneurco_4',
+            layerName: 'layer_isoteneurco_4',
+            pane: 'pane_isoteneurco_4',
+            onEachFeature: pop_isoteneurco_4,
+            style: style_isoteneurco_4_0,
+        });
+        bounds_group.addLayer(layer_isoteneurco_4);
+        map.addLayer(layer_isoteneurco_4);
+        function pop_isoteneurco2_5(feature, layer) {
+        }
+
+        function style_isoteneurco2_5_0(feature) {
+            if (feature.properties['ELEV'] >= 2.000000 && feature.properties['ELEV'] <= 4.000000 ) {
+                return {
+                pane: 'pane_isoteneurco2_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 4.000000 && feature.properties['ELEV'] <= 6.000000 ) {
+                return {
+                pane: 'pane_isoteneurco2_5',
+                opacity: 1,
+                color: 'rgba(255,191,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 6.000000 && feature.properties['ELEV'] <= 8.000000 ) {
+                return {
+                pane: 'pane_isoteneurco2_5',
+                opacity: 1,
+                color: 'rgba(255,128,128,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 8.000000 && feature.properties['ELEV'] <= 10.000000 ) {
+                return {
+                pane: 'pane_isoteneurco2_5',
+                opacity: 1,
+                color: 'rgba(255,64,64,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 10.000000 && feature.properties['ELEV'] <= 12.000000 ) {
+                return {
+                pane: 'pane_isoteneurco2_5',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_isoteneurco2_5');
+        map.getPane('pane_isoteneurco2_5').style.zIndex = 405;
+        map.getPane('pane_isoteneurco2_5').style['mix-blend-mode'] = 'normal';
+        var layer_isoteneurco2_5 = new L.geoJson(json_isoteneurco2_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_isoteneurco2_5',
+            layerName: 'layer_isoteneurco2_5',
+            pane: 'pane_isoteneurco2_5',
+            onEachFeature: pop_isoteneurco2_5,
+            style: style_isoteneurco2_5_0,
+        });
+        bounds_group.addLayer(layer_isoteneurco2_5);
+        map.addLayer(layer_isoteneurco2_5);
+        function pop_isoteneurcuivre_6(feature, layer) {
+        }
+
+        function style_isoteneurcuivre_6_0(feature) {
+            if (feature.properties['ELEV'] >= 12.000000 && feature.properties['ELEV'] <= 40.000000 ) {
+                return {
+                pane: 'pane_isoteneurcuivre_6',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 40.000000 && feature.properties['ELEV'] <= 68.000000 ) {
+                return {
+                pane: 'pane_isoteneurcuivre_6',
+                opacity: 1,
+                color: 'rgba(255,191,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 68.000000 && feature.properties['ELEV'] <= 96.000000 ) {
+                return {
+                pane: 'pane_isoteneurcuivre_6',
+                opacity: 1,
+                color: 'rgba(255,128,128,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 96.000000 && feature.properties['ELEV'] <= 124.000000 ) {
+                return {
+                pane: 'pane_isoteneurcuivre_6',
+                opacity: 1,
+                color: 'rgba(255,64,64,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+            if (feature.properties['ELEV'] >= 124.000000 && feature.properties['ELEV'] <= 152.000000 ) {
+                return {
+                pane: 'pane_isoteneurcuivre_6',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_isoteneurcuivre_6');
+        map.getPane('pane_isoteneurcuivre_6').style.zIndex = 406;
+        map.getPane('pane_isoteneurcuivre_6').style['mix-blend-mode'] = 'normal';
+        var layer_isoteneurcuivre_6 = new L.geoJson(json_isoteneurcuivre_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_isoteneurcuivre_6',
+            layerName: 'layer_isoteneurcuivre_6',
+            pane: 'pane_isoteneurcuivre_6',
+            onEachFeature: pop_isoteneurcuivre_6,
+            style: style_isoteneurcuivre_6_0,
+        });
+        bounds_group.addLayer(layer_isoteneurcuivre_6);
+        map.addLayer(layer_isoteneurcuivre_6);
+        function pop_grille_7(feature, layer) {
+        }
+
+        function style_grille_7_0() {
+            return {
+                pane: 'pane_grille_7',
+                opacity: 1,
+                color: 'rgba(241,26,18,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_grille_7');
+        map.getPane('pane_grille_7').style.zIndex = 407;
+        map.getPane('pane_grille_7').style['mix-blend-mode'] = 'normal';
+        var layer_grille_7 = new L.geoJson(json_grille_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_grille_7',
+            layerName: 'layer_grille_7',
+            pane: 'pane_grille_7',
+            onEachFeature: pop_grille_7,
+            style: style_grille_7_0,
+        });
+        bounds_group.addLayer(layer_grille_7);
+        map.addLayer(layer_grille_7);
+        function pop_pointinteret_8(feature, layer) {
+        }
+
+        function style_pointinteret_8_0() {
+            return {
+                pane: 'pane_pointinteret_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_pointinteret_8');
+        map.getPane('pane_pointinteret_8').style.zIndex = 408;
+        map.getPane('pane_pointinteret_8').style['mix-blend-mode'] = 'normal';
+        var layer_pointinteret_8 = new L.geoJson(json_pointinteret_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_pointinteret_8',
+            layerName: 'layer_pointinteret_8',
+            pane: 'pane_pointinteret_8',
+            onEachFeature: pop_pointinteret_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_pointinteret_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_pointinteret_8);
+        map.addLayer(layer_pointinteret_8);
+        function pop_teneur_9(feature, layer) {
+        }
+
+        function style_teneur_9_0() {
+            return {
+                pane: 'pane_teneur_9',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_teneur_9');
+        map.getPane('pane_teneur_9').style.zIndex = 409;
+        map.getPane('pane_teneur_9').style['mix-blend-mode'] = 'normal';
+        var layer_teneur_9 = new L.geoJson(json_teneur_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_teneur_9',
+            layerName: 'layer_teneur_9',
+            pane: 'pane_teneur_9',
+            onEachFeature: pop_teneur_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_teneur_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_teneur_9);
+        map.addLayer(layer_teneur_9);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/teneur_9.png" /> teneur': layer_teneur_9,'<img src="legend/pointinteret_8.png" /> pointinteret': layer_pointinteret_8,'<img src="legend/grille_7.png" /> grille': layer_grille_7,'isoteneurcuivre<br /><table><tr><td style="text-align: center;"><img src="legend/isoteneurcuivre_6_12400.png" /></td><td>12 - 40</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurcuivre_6_40681.png" /></td><td>40 - 68</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurcuivre_6_68962.png" /></td><td>68 - 96</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurcuivre_6_961243.png" /></td><td>96 - 124</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurcuivre_6_1241524.png" /></td><td>124 - 152</td></tr></table>': layer_isoteneurcuivre_6,'isoteneurco2<br /><table><tr><td style="text-align: center;"><img src="legend/isoteneurco2_5_240.png" /></td><td>2 - 4</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco2_5_461.png" /></td><td>4 - 6</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco2_5_682.png" /></td><td>6 - 8</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco2_5_8103.png" /></td><td>8 - 10</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco2_5_10124.png" /></td><td>10 - 12</td></tr></table>': layer_isoteneurco2_5,'isoteneurco<br /><table><tr><td style="text-align: center;"><img src="legend/isoteneurco_4_680.png" /></td><td>6 - 8</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco_4_8101.png" /></td><td>8 - 10</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco_4_10122.png" /></td><td>10 - 12</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco_4_12143.png" /></td><td>12 - 14</td></tr><tr><td style="text-align: center;"><img src="legend/isoteneurco_4_14164.png" /></td><td>14 - 16</td></tr></table>': layer_isoteneurco_4,"interpocuivre": layer_interpocuivre_3,"interpocobalt": layer_interpocobalt_2,'<img src="legend/pointsinteret1_1.png" /> pointsinteret1': layer_pointsinteret1_1,"openstreetmap": layer_openstreetmap_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_isoteneurco_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['ELEV'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['ELEV']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_isoteneurco_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_isoteneurco2_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['ELEV'] !== null?String('<div style="color: #ffc505; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['ELEV']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_isoteneurco2_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_isoteneurcuivre_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['ELEV'] !== null?String('<div style="color: #7ffdff; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['ELEV']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_isoteneurcuivre_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_isoteneurco_4,layer_isoteneurco2_5,layer_isoteneurcuivre_6]);
+        map.on("zoomend", function(){
+            resetLabels([layer_isoteneurco_4,layer_isoteneurco2_5,layer_isoteneurcuivre_6]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_isoteneurco_4,layer_isoteneurco2_5,layer_isoteneurcuivre_6]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_isoteneurco_4,layer_isoteneurco2_5,layer_isoteneurcuivre_6]);
+        });
+        </script>
+    </body>
+</html>
